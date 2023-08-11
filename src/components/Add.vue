@@ -8,7 +8,7 @@
     const {setPageToList,addUser}=useConnector()
     // reactive pinia
     import {storeToRefs} from 'pinia'
-    const {isList,usersList}=storeToRefs(useConnector())
+    const {isList,usersList,mistakesArray}=storeToRefs(useConnector())
 
     // new user
     const defaultUser={
@@ -25,8 +25,9 @@
 
     //ttt
     const ttt=()=>{
-        console.log(user.value)
+        console.log()
     }
+    ttt()
 </script>
 
 <template>
@@ -60,6 +61,12 @@
                 <span>Добавить ребёнка</span>
             </button>
         </div>
+        <transition name="demoTransition">
+            <div class="mistakesList" v-if="mistakesArray[0]!==undefined">
+                <p v-for="(mistakesItem,mistakesIndex) in mistakesArray">{{mistakesItem}}</p>
+                <button type="button" @click="mistakesArray=[]">Понятно</button>
+            </div>
+        </transition>
     </div>
 </template>
 
@@ -124,5 +131,33 @@
             flex-grow: 1;
         }
         &__addBtn{}
+    }
+
+    .mistakesList,.doneMessage{
+        background-color: #3c3f41;
+        position: fixed;
+        top: calc(50px + 20px);
+        //align-self: center;
+        width: 400px;
+        left: 50%;
+        margin-left: -200px;
+        border-radius: 15px;
+        padding: 30px;
+        &>button{
+            width: 100%;
+            border-radius: 15px;
+        }
+        &>*{
+            margin-bottom: 10px;
+        }
+        &>:last-child{
+            margin-bottom: 0;
+        }
+    }
+    .mistakesList{
+        border: 2px solid tomato;
+        &>p{
+            color: tomato;
+        }
     }
 </style>
