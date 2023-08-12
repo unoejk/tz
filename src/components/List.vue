@@ -29,17 +29,14 @@
     .wrapForList{
         display: flex;
         flex-direction: column;
-        gap: 20px;
-        margin: 20px;
+        gap: 60px;
+        padding: 60px;
     }
     .userCard{
-        background-color: #3c3f41;
         border-radius: 20px;
-
         display: flex;
         flex-direction: column;
         gap: 10px;
-        padding: 20px;
         &__userInfo,&__mistakeMessage{}
         &__message{}
         &_childsBlock{
@@ -47,9 +44,8 @@
             gap: 10px;
             &__childInfo{
                 font: inherit;
-                background-color: #313336;
+                background-color: rgba(56, 56, 57, 0.2);
                 outline: inherit;
-                /*border: 2px solid #2b2b2c;*/
                 border-radius: 10px;
                 padding: 10px;
                 width: fit-content;

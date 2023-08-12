@@ -13,6 +13,7 @@ export const useConnector = defineStore({
             this.isList=qBool_isList
         },
         async addUser(user){
+            this.mistakesArray=[]
             await this.validateNewUser(user)
             if (this.mistakesArray[0]===undefined){
                 this.usersList.push(user)
