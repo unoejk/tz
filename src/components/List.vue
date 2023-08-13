@@ -1,10 +1,9 @@
 <script setup="">
     // pinia
     import {useConnector} from "../stores/connector";
-    const {setPageToList,addUser}=useConnector()
     // reactive pinia
     import {storeToRefs} from 'pinia'
-    const {isList,usersList}=storeToRefs(useConnector())
+    const {usersList}=storeToRefs(useConnector())
     // fast func from pinia
 </script>
 

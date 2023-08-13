@@ -12,7 +12,7 @@ export const useConnector = defineStore({
         async setPageToList(qBool_isList){
             this.isList=qBool_isList
         },
-        async addUser(user){
+        async tryAddUser(user){
             this.mistakesArray=[]
             await this.validateNewUser(user)
             if (this.mistakesArray[0]===undefined){

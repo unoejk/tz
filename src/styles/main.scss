@@ -5,32 +5,15 @@
     src: url("./fonts/Montserrat-Regular.ttf");
 }
 
-@font-face {
-    font-family: "Montserrat Bold";
-    src: url("./fonts/Montserrat-Bold.ttf");
-}
-
 // ---------------- standard ----------------
 
 *{
-    //&::-webkit-scrollbar{
-    //    width: 15px;
-    //    height: 15px;
-    //}
-    //&::-webkit-scrollbar-track-piece  {
-    //    background-color: #2b2b2c;
-    //}
-    //&::-webkit-scrollbar-thumb{
-    //    background-color: #5f6161;
-    //}
-
     color: #383839;
     box-sizing: border-box;
 }
 #app{
     min-height: 100vh;
     font-family: Montserrat, sans-serif;
-    //font-weight: 600;
     font-size: 1rem;
 }
 span{

@@ -5,10 +5,10 @@
     import {deepClone} from '../stores/_global'
     // pinia
     import {useConnector} from "../stores/connector";
-    const {setPageToList,addUser}=useConnector()
+    const {tryAddUser}=useConnector()
     // reactive pinia
     import {storeToRefs} from 'pinia'
-    const {isList,usersList,mistakesArray}=storeToRefs(useConnector())
+    const {mistakesArray}=storeToRefs(useConnector())
 
     // new user
     const defaultUser={
@@ -22,12 +22,6 @@
         ],
     }
     const user=ref(deepClone(defaultUser))
-
-    //ttt
-    const ttt=()=>{
-        console.log()
-    }
-    ttt()
 </script>
 
 <template>
@@ -64,9 +58,15 @@
                 <button class="childsBlock_newChild__removeBtn" @click="user.childs.splice(childIndex,1)">Удалить</button>
             </div>
         </div>
-        <button class="saveBtn" @click="[addUser(user),user=deepClone(defaultUser)]">Сохранить</button>
+        <button
+                class="saveBtn"
+                @click="[
+                    tryAddUser(user),
+                    mistakesArray[0]===undefined ? user=deepClone(defaultUser) : null
+                    ]"
+        >Сохранить</button>
         <div class="mistakesList" v-if="mistakesArray[0]!==undefined">
-            <p v-for="(mistakesItem,mistakesIndex) in mistakesArray">{{mistakesItem}}</p>
+            <p class="mistakesList__mistake" v-for="(mistakesItem,mistakesIndex) in mistakesArray">{{mistakesItem}}</p>
         </div>
     </div>
 </template>
@@ -83,10 +83,7 @@
         flex-direction: column;
         gap: 10px;
         &__header{}
-        &__fakeInput{
-            /*background-color: tomato;*/
-            /*width: 100%;*/
-        }
+        &__fakeInput{}
     }
     .childsBlock{
         display: flex;
@@ -140,7 +137,6 @@
     .saveBtn{
         font-size: 1rem;
         cursor: pointer;
-        /*background-color: inherit;*/
         border: inherit;
         background-color: #01a6fc;
         color:  #fdfdfe;
@@ -151,5 +147,10 @@
         gap: 8px;
         width: 140px;
 
+    }
+    .mistakesList{
+        &__mistake{
+            color: #01a6fc;
+        }
     }
 </style>
