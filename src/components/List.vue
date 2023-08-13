@@ -19,7 +19,8 @@
                 <h2 class="userCard_personalBlock__title">Персональные данные</h2>
                 <h2 class="userCard_personalBlock__userInfo">{{userItem.userName+', '+userItem.userAge+' лет'}}</h2>
             </div>
-            <div class="userCard_childsBlock">
+            <h2 class="userCard__messageAboutChildfree" v-if="userItem.childs[0]===undefined">Детей нет</h2>
+            <div class="userCard_childsBlock" v-if="userItem.childs[0]!==undefined">
                 <h2 class="userCard_childsBlock__title">Дети</h2>
                 <div class="userCard_childsBlock__childCard" v-for="(childItem,childIndex) in userItem.childs">
                     {{childItem.childName+', '+childItem.childAge+' лет'}}
@@ -53,6 +54,7 @@
                 font-family: Montserrat Bold, sans-serif;
             }
         }
+        &__messageAboutChildfree{}
         &_childsBlock{
             display: flex;
             flex-direction: column;
