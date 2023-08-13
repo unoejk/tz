@@ -9,14 +9,19 @@
 
 <template>
     <div class="wrapForList">
-        <div class="userCard alignCenter" v-if="usersList[0]===undefined">
-            <h2 class="userCard__mistakeMessage">Пока никого не добавили</h2>
-        </div>
-        <div class="userCard" v-for="(userItem,userIndex) in usersList">
-            <h2 class="userCard__userInfo">{{userItem.userName+', '+userItem.userAge+' лет'}}</h2>
-            <p class="userCard__message">дети:</p>
+        <h2 class="mistakeMessage" v-if="usersList[0]===undefined">Пока никого не добавили</h2>
+        <div
+                class="userCard"
+                :class="{'userCard-many':usersList[1]!==undefined}"
+                v-for="(userItem,userIndex) in usersList"
+        >
+            <div class="userCard_personalBlock">
+                <h2 class="userCard_personalBlock__title">Персональные данные</h2>
+                <h2 class="userCard_personalBlock__userInfo">{{userItem.userName+', '+userItem.userAge+' лет'}}</h2>
+            </div>
             <div class="userCard_childsBlock">
-                <div class="userCard_childsBlock__childInfo" v-for="(childItem,childIndex) in userItem.childs">
+                <h2 class="userCard_childsBlock__title">Дети</h2>
+                <div class="userCard_childsBlock__childCard" v-for="(childItem,childIndex) in userItem.childs">
                     {{childItem.childName+', '+childItem.childAge+' лет'}}
                 </div>
             </div>
@@ -28,29 +33,43 @@
     .wrapForList{
         display: flex;
         flex-direction: column;
-        gap: 60px;
-        padding: 60px;
+        gap: 80px;
+        padding: 80px;
+    }
+    .mistakeMessage{
+        text-align: center;
     }
     .userCard{
         border-radius: 20px;
         display: flex;
         flex-direction: column;
-        gap: 10px;
-        &__userInfo,&__mistakeMessage{}
-        &__message{}
+        gap: 80px;
+        &_personalBlock{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            &__title{}
+            &__userInfo{
+                font-family: Montserrat Bold, sans-serif;
+            }
+        }
         &_childsBlock{
             display: flex;
-            gap: 10px;
-            &__childInfo{
-                font: inherit;
+            flex-direction: column;
+            gap: 20px;
+            &__title{}
+            &__childCard{
+                font-family: Montserrat Bold, sans-serif;
                 background-color: rgba(56, 56, 57, 0.2);
                 outline: inherit;
                 border-radius: 10px;
-                padding: 10px;
+                padding: 20px;
                 width: fit-content;
-                height: fit-content;
-                transition: all .3s ease-in-out;
             }
+        }
+        &-many{
+            border: 2px solid rgba(56, 56, 57, 0.6);
+            padding: 20px;
         }
     }
 </style>
